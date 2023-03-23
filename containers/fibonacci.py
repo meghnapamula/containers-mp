@@ -1,13 +1,7 @@
-
-################################################################################
-# example fibonacci number code;
-# you do not have to modify this code in any way
-################################################################################
-
-
 def fibs(n):
     '''
-    This function computes the first n fibonacci numbers.
+    This function computes the first n
+    fibonacci numbers!
     Notice that this function uses O(n) memory.
     '''
     fibs = []
@@ -22,7 +16,8 @@ def fibs(n):
 
 def fib_bad(n):
     '''
-    This function computes the n-th fibonacci number,
+    This function computes the n-th
+    fibonacci number,
     but it uses O(n) memory to do so,
     which is bad.
     '''
@@ -31,7 +26,8 @@ def fib_bad(n):
 
 def fib(n):
     '''
-    This function computes the n-th fibonacci number,
+    This function computes the n-th
+    fibonacci number,
     but it consumes only O(1) memory,
     and is optimal.
     '''
@@ -46,30 +42,62 @@ def fib(n):
     return f2
 
 
-################################################################################
-# fibonacci number code using generators;
-# you will need to implement the functions below
-################################################################################
-
-
 class Fib:
     '''
     This class represents all the fibonacci numbers,
     but uses O(1) memory to do so.
-
     >>> list(Fib(5))
     [1, 1, 2, 3, 5]
     '''
 
+    def __init__(self, n=None):
+        self.n = n
+
+    def __repr__(self):
+        if self.n is None:
+            return 'Fib()'
+        return f'Fib({self.n})'
+
+    def __iter__(self):
+        return FibIter(self.n)
+
 
 class FibIter:
     '''
-    This is the iterator helper class for the Fib class.
+    This is the iterator helper class for the
+    Fib class.
     '''
+
+    def __init__(self, n):
+        self.n = n
+        self.i = 0
+        self.after = 1
+        self.before = 0
+
+    def __next__(self):
+        if self.n is None:
+            pass
+
+        elif self.i >= self.n:
+            raise StopIteration
+        self.i += 1
+        fib = self.after
+        self.after += self.before
+        self.before = fib
+        return fib
 
 
 def fib_yield(n=None):
     '''
-    This function returns a generator that computes the first n fibonacci numbers.
+    This function returns a generator that computes
+    the first n fibonacci numbers.
     If n is None, then the generator is infinite.
     '''
+
+    x = 1
+    y = 1
+
+    if n is not None:
+        for i in range(1, n + 1):
+            yield x
+            x, y = y, x + y
