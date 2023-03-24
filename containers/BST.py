@@ -1,21 +1,14 @@
-'''
-This file implements the Binary Search Tree data structure.
-'''
-
 from containers.BinaryTree import BinaryTree, Node
 
 
 class BST(BinaryTree):
     '''
-    The BST is a superclass of BinaryTree.
-    and we don't have to reimplement them.
+    don't have to reimplement them.
     '''
 
     def __init__(self, xs=None):
         '''
         FIXME:
-        If xs is a list (i.e. xs is not None),
-        then each element of xs needs to be inserted into the BST.
         '''
         super().__init__()
         if xs:
@@ -55,8 +48,6 @@ class BST(BinaryTree):
     def _is_bst_satisfied(node):
         '''
         FIXME:
-        The current implementation has a bug:
-        HINT:
         '''
         ret = True
         if node.left:
@@ -94,9 +85,6 @@ class BST(BinaryTree):
         '''
         Given a list xs, insert each element of xs into self.
         FIXME:
-        Implement this function.
-        HINT:
-        Repeatedly call the insert method.
         '''
         for x in xs:
             if self.root:
@@ -114,7 +102,6 @@ class BST(BinaryTree):
         '''
         Returns whether value is contained in the BST.
         FIXME:
-        Implement this function.
         '''
         if not self.root:
             return None
@@ -125,7 +112,6 @@ class BST(BinaryTree):
     def _find(value, node):
         '''
         FIXME:
-        Implement this function.
         '''
         if node.value == value:
             return True
@@ -163,9 +149,6 @@ class BST(BinaryTree):
         '''
         Returns the largest value in the tree.
         FIXME:
-        Implement this function.
-        HINT:
-        Follow the pattern of the _find_smallest function.
         '''
         if self.root:
             return BST._find_largest(self.root)
@@ -185,9 +168,6 @@ class BST(BinaryTree):
         Removes value from the BST.
         If value is not in the BST, it does nothing.
         FIXME:
-        Implement this function.
-        HINT:
-        HINT:
         '''
         self.root = BST._remove(value, self.root)
 
