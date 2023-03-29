@@ -1,8 +1,14 @@
+'''
+'''
+
 from containers.BinaryTree import BinaryTree, Node
 from containers.BST import BST
 
 
-class AVLTree():
+class AVLTree(BST):
+    '''
+    FIXME:
+    '''
 
     def __init__(self, xs=None):
         '''
@@ -28,7 +34,6 @@ class AVLTree():
 
     def is_avl_satisfied(self):
         '''
-        Returns True if the avl tree satisfies that all nodes have a balance factor in [-1,0,1].
         '''
         return AVLTree._is_avl_satisfied(self.root)
 
@@ -36,53 +41,50 @@ class AVLTree():
     def _is_avl_satisfied(node):
         '''
         FIXME:
-        Implement this function.
+        Implement
         '''
         if not node:
             return True
         if AVLTree._balance_factor(node) not in [-1, 0, 1]:
             return False
-        a = AVLTree._is_avl_satisfied(node.left)
-        b = AVLTree._is_avl_satisfied(node.right)
-        return a and b
+        left = AVLTree._is_avl_satisfied(node.left)
+        right = AVLTree._is_avl_satisfied(node.right)
+        return left and right
 
     @staticmethod
     def _left_rotate(node):
         '''
         FIXME:
-        Implement this function.
-
         '''
         if node.right:
-            q = Node(node.right.value)
-            q.left = Node(node.value)
-            q.right = node.right.right
-            q.left.left = node.left
-            q.left.right = node.right.left
-            return q
+            new_root = Node(node.right.value)
+            new_root.left = Node(node.value)
+            new_root.right = node.right.right
+            new_root.left.left = node.left
+            new_root.left.right = node.right.left
+            return new_root
         else:
             return node
 
     @staticmethod
     def _right_rotate(node):
         '''
-        FIXME:
+        The lecture videos provide a high-level overview of tree rotations,
         '''
         if node.left:
-            d = Node(node.value)
-            d.right = node.right
-            d.left = node.left.right
-            q = Node(node.left.value)
-            q = node.left.left
-            q.right = d
+            old_root = Node(node.value)
+            old_root.right = node.right
+            old_root.left = node.left.right
+            new_root = Node(node.left.value)
+            new_root.left = node.left.left
+            new_root.right = old_root
         else:
-            q = node
-        return q
+            new_root = node
+        return new_root
 
     def insert(self, value):
         '''
         FIXME:
-        Implement this function.
         '''
         if self.root:
             self.root = AVLTree._insert(self.root, value)
@@ -91,7 +93,7 @@ class AVLTree():
 
     def insert_list(self, xs):
         '''
-        Repeatedly call the insert method.
+        Implement this function.
         '''
         for x in xs:
             if self.root:
