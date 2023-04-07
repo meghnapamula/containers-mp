@@ -3,12 +3,14 @@ from containers.BinaryTree import BinaryTree, Node
 
 class Heap(BinaryTree):
     '''
-    FIXME:
+    and in the constructor below.
     '''
 
     def __init__(self, xs=None):
         '''
         FIXME:
+        If xs is a list (i.e. xs is not None),
+        then each element of xs needs to be inserted into the Heap.
         '''
         super().__init__()
         self.num_nodes = 0
@@ -17,11 +19,14 @@ class Heap(BinaryTree):
 
     def __repr__(self):
         '''
+        Notice that in the BinaryTree class,
+        and that they won't have to reimplement it.
         '''
         return type(self).__name__ + '(' + str(self.to_list('inorder')) + ')'
 
     def is_heap_satisfied(self):
         '''
+        Whenever you implement a data structure,
         are actually working.
         '''
         if self.root:
@@ -49,6 +54,11 @@ class Heap(BinaryTree):
         '''
         Inserts value into the heap.
         FIXME:
+        Implement this function.
+        HINT:
+        HINT:
+        Create a @staticmethod helper function,
+        following the same pattern used in the BST and AVLTree
         insert functions.
         '''
         self.num_nodes += 1
@@ -101,6 +111,9 @@ class Heap(BinaryTree):
         Removes the minimum value from the Heap.
         If the heap is empty, it does nothing.
         FIXME:
+        (or no helper at all),
+        but I personally found dividing up the code into two made
+        the most sense.
         '''
         remove_path = list('{0:b}'.format(self.num_nodes))
         self.num_nodes -= 1
@@ -129,7 +142,7 @@ class Heap(BinaryTree):
             remove_path.pop(0)
             return Heap._remove_bottom_right(node.left, remove_path)
 
-@staticmethod
+    @staticmethod
     def _trickle_down(node):
         if not Heap._is_heap_satisfied(node):
             if node.left:
