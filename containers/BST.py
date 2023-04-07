@@ -3,7 +3,7 @@ from containers.BinaryTree import BinaryTree, Node
 
 class BST(BinaryTree):
     '''
-    don't have to reimplement them.
+    !don't have to reimplement them.
     '''
 
     def __init__(self, xs=None):
