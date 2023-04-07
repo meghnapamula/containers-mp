@@ -129,8 +129,8 @@ class Heap(BinaryTree):
             remove_path.pop(0)
             return Heap._remove_bottom_right(node.left, remove_path)
 
-    @staticmethod
-    def _trickle(node):
+@staticmethod
+    def _trickle_down(node):
         if not Heap._is_heap_satisfied(node):
             if node.left:
                 left = node.left.value
@@ -149,8 +149,8 @@ class Heap(BinaryTree):
                 min_child = node.left or node.right
             if min_child and min_child.value < node.value:
                 node.value, min_child.value = min_child.value, node.value
-                Heap._trickle(min_child)
+                Heap._trickle_down(min_child)
         if node.left and not Heap._is_heap_satisfied(node.left):
-            Heap._trickle(node.left)
+            Heap._trickle_down(node.left)
         if node.right and not Heap._is_heap_satisfied(node.right):
-            Heap._trickle(node.right)
+            Heap._trickle_down(node.right)
